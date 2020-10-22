@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     Vector3 velocity;
     bool isground;
-    CharacterController motor;
+    private CharacterController motor;
 
     // Start is called before the first frame update
     void Start()
