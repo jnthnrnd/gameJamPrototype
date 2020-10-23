@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed = 15;
     [SerializeField] float gravity = -19;
     [SerializeField] float jumpHeight = 3;
-    [SerializeField] float groundDistance = 0.4f;
+    //[SerializeField] float groundDistance = 0.4f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     Vector3 velocity;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void MoveMethod()
     {
-        isground = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        //isground = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         
         if (isground && velocity.y < 0)
         {
@@ -42,12 +42,21 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-
+        Debug.Log(isground);
         if(Input.GetButtonDown("Jump") && isground)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            isground = false; //set to false when jumped
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isground = true;
+        }
     }
 }
