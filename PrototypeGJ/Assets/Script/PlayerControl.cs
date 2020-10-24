@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     public CharacterController controller;
     public Transform cam;
+    public GameObject interactMessage;
 
     private float turnSmoothTime = 0.1f;
     private Vector3 direction = Vector3.zero;
@@ -25,6 +26,7 @@ public class PlayerControl : MonoBehaviour
     float turnSmoothVelocity;
     Vector3 velocity;
     bool isOnGround;
+    private GameObject message;
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +80,15 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Press F to Interact");
+        Vector3 messagepos = other.transform.position + interactMessage.transform.position;
+        message = Instantiate(interactMessage, messagepos, interactMessage.transform.rotation);
+        message.transform.SetParent(other.transform);
 
+        Debug.Log(other.transform.position);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Destroy(message, 0.5f);
     }
 }
