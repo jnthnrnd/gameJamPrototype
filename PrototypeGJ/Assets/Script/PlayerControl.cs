@@ -75,4 +75,10 @@ public class PlayerControl : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Press F to Interact");
+
+    }
 }
