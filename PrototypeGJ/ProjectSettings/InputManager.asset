@@ -294,11 +294,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Run
-    descriptiveName: Player Run
+    m_Name: Grab
+    descriptiveName: Grab Object
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left shift
+    positiveButton: f
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 1000
