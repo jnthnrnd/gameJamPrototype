@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
     public bool isPause = false;
 
+    public static int doorNumber;
+
     // Update is called once per frame
     void Start()
     {
@@ -32,13 +34,24 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
+        //handle scenes
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //first door
+            if (PlayerControl.isDoor && doorNumber == 1)
+            {
+                //loads the DoorKeyCode_1 scene;
+                SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            }
+        }
+
     }
 
     public void StartGame()
     {
         mainMenu.SetActive(false);
         isGameOver = false;
-        playerCamera.SetActive(true);
+        playerCamera.SetActive(true);      
     }
 
     public void GameOver()
