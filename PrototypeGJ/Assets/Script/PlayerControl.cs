@@ -20,7 +20,10 @@ public class PlayerControl : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
     public GameObject interactMessage;
+<<<<<<< HEAD
     public GameObject objectHolder;
+=======
+>>>>>>> main
 
     private float turnSmoothTime = 0.1f;
     private Vector3 direction = Vector3.zero;
@@ -28,11 +31,15 @@ public class PlayerControl : MonoBehaviour
     float turnSmoothVelocity;
     Vector3 velocity;
     bool isOnGround;
+<<<<<<< HEAD
     bool hasObject = false;
     bool holdObject = false;
     bool dropObject = false;
     bool isLightOn = true;
     bool isSwitch = false;
+=======
+    private GameObject message;
+>>>>>>> main
 
     GameObject message;
     GameObject thing;
@@ -112,6 +119,7 @@ public class PlayerControl : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+<<<<<<< HEAD
     void Hold()
     {
         dropObject = true;
@@ -202,12 +210,24 @@ public class PlayerControl : MonoBehaviour
                 message.GetComponent<TextMeshPro>().text = "Press 'F' to Interact";
                 break;
         }
+=======
+    private void OnTriggerEnter(Collider other)
+    {
+        Vector3 messagepos = other.transform.position + interactMessage.transform.position;
+        message = Instantiate(interactMessage, messagepos, interactMessage.transform.rotation);
+        message.transform.SetParent(other.transform);
+
+        Debug.Log(other.transform.position);
+>>>>>>> main
     }
 
     private void OnTriggerExit(Collider other)
     {
         Destroy(message, 0.5f);
+<<<<<<< HEAD
         hasObject = false;
         isSwitch = false;
+=======
+>>>>>>> main
     }
 }
